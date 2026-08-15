@@ -8,7 +8,6 @@ An Indonesian palm oil group manages 800 blocks across 45,000 hectares, but yiel
 
 ```mermaid
 flowchart LR
-    SP --> RAW[RAW Tables]
     SPS --> RAW
     RAW --> DT[Dynamic Tables]
     DT --> ML[ML Functions]
