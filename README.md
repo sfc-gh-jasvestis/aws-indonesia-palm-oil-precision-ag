@@ -116,7 +116,7 @@ Run all scripts including AWS integration. Deploy QuickSight dashboard from `qui
 
 Industry research and Snowflake customer outcomes:
 - **Indonesia has 16.4M hectares under oil palm — average smallholder yield is 2.5 tonnes/ha vs 5-7 tonnes/ha potential** — [GAPKI Statistics](https://gapki.id/en/news)
-- **Precision agriculture (drones, soil sensors, AI) increases palm oil yield 20-40% while reducing fertilizer use 15%** — [World Resources Institute](https://www.wri.org/research/indonesia-palm-oil-productivity)
+- **Precision agriculture (drones, soil sensors, AI) increases palm oil yield 20-40% while reducing fertilizer use 15%** — [World Resources Institute](https://www.wri.org/initiatives/food-land-use)
 - **Indonesia's palm oil industry is worth $25B annually — a 10% yield improvement equals $2.5B additional revenue** — [Indonesian Palm Oil Board](https://ditjenbun.pertanian.go.id/)
 - **Sime Darby Plantation uses IoT and AI analytics to optimize 580,000 hectares across Malaysia and Indonesia** — [Sime Darby Annual Report](https://www.simedarbyplantation.com/sustainability)
 
