@@ -8,7 +8,7 @@ USE SCHEMA APP;
 CREATE OR REPLACE NOTIFICATION INTEGRATION aws_indonesia_palm_oil_precision_ag_EMAIL_INT
   TYPE = EMAIL
   ENABLED = TRUE
-  ALLOWED_RECIPIENTS = ('jonathan.asvestis@snowflake.com');
+  ALLOWED_RECIPIENTS = ('<YOUR_EMAIL>');
 
 -- Alert: YIELD_GAP_ALERT
 CREATE OR REPLACE ALERT APP.YIELD_GAP_ALERT
@@ -22,7 +22,7 @@ IF (EXISTS (
 THEN
   CALL SYSTEM$SEND_EMAIL(
     'aws_indonesia_palm_oil_precision_ag_EMAIL_INT',
-    'jonathan.asvestis@snowflake.com',
+    '<YOUR_EMAIL>',
     '[ALERT] Precision Agriculture Analytics: Block yield significantly below potential — intervention needed',
     'Block yield significantly below potential — intervention needed'
   );
@@ -41,7 +41,7 @@ IF (EXISTS (
 THEN
   CALL SYSTEM$SEND_EMAIL(
     'aws_indonesia_palm_oil_precision_ag_EMAIL_INT',
-    'jonathan.asvestis@snowflake.com',
+    '<YOUR_EMAIL>',
     '[ALERT] Precision Agriculture Analytics: Nutrient deficiency detected — fertilizer application recommended',
     'Nutrient deficiency detected — fertilizer application recommended'
   );
