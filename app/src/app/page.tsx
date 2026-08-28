@@ -35,36 +35,36 @@ export default function HomePage() {
   const executiveCockpit = (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <KPICard title="Total Yield" value="Rp 2.4B" status="neutral" />
-        <KPICard title="EUDR Compliance" value="7" status="warning" />
-        <KPICard title="Anomalies Detected" value="3" status="danger" />
-        <KPICard title="Active Mills" value="124" status="neutral" />
+        <KPICard title="FFB Yield (Avg)" value="24.2 T/ha" status="neutral" />
+        <KPICard title="Fertilizer Efficiency" value="84%" status="neutral" />
+        <KPICard title="Replanting Target" value="12K ha" status="warning" />
+        <KPICard title="Estates Monitored" value="847" status="neutral" />
       </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Chart
           data={data?.timeseries || [{ period: 'Loading', value: 0 }]}
           type="line"
           xKey="period"
-          yKeys={[{ key: 'value', name: 'Yield' }]}
-          title="Yield Trend (Weekly)"
+          yKeys={[{ key: 'value', name: 'T/ha' }]}
+          title="FFB Yield Trend (Monthly)"
         />
         <Chart
           data={data?.categories || [{ category: 'Loading', count: 0 }]}
           type="bar"
           xKey="category"
-          yKeys={[{ key: 'count', name: 'Count' }]}
-          title="EUDR Compliance by Mill"
+          yKeys={[{ key: 'count', name: 'Rp M/ha' }]}
+          title="Input Cost by Estate"
         />
       </div>
       <DataTable
         columns={[
           { key: 'id', header: '#' },
-          { key: 'name', header: 'Mill' },
-          { key: 'status', header: 'Status' },
-          { key: 'value', header: 'Yield' },
+          { key: 'name', header: 'Estate' },
+          { key: 'status', header: 'Yield Status' },
+          { key: 'value', header: 'FFB T/ha' },
         ]}
         data={data?.entities || []}
-        title="Mill Performance"
+        title="Estate Performance"
       />
     </div>
   );
@@ -72,16 +72,16 @@ export default function HomePage() {
   const domainTab1 = (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <KPICard title="Efficiency" value="87%" />
-        <KPICard title="Utilization" value="72%" />
-        <KPICard title="Growth Rate" value="+8.4%" />
+        <KPICard title="OER Rate" value="22.4%" />
+        <KPICard title="Harvest Interval" value="12 days" />
+        <KPICard title="Palm Age (Avg)" value="14 yrs" />
       </div>
       <Chart
         data={data?.detail || [{ x: 'Loading', y: 0 }]}
         type="area"
         xKey="x"
-        yKeys={[{ key: 'y', name: 'Index' }]}
-        title="Oil Precision Ag Performance Trend"
+        yKeys={[{ key: 'y', name: 'T/ha' }]}
+        title="Yield vs Palm Age Profile"
         height={400}
       />
     </div>
@@ -94,17 +94,17 @@ export default function HomePage() {
           data={data?.breakdown || [{ label: 'A', value: 30 }, { label: 'B', value: 70 }]}
           type="pie"
           xKey="label"
-          yKeys={[{ key: 'value', name: 'Score' }]}
-          title="Risk Distribution"
+          yKeys={[{ key: 'value', name: 'Rp Return/Rp Invested' }]}
+          title="ROI by Intervention"
         />
         <ActionMemo
-          persona={{ name: 'Indonesia Operations Lead', role: 'Director of Oil Precision Ag' }}
+          persona={{ name: 'Ir. Suryanto Halim', role: 'VP Plantation Operations' }}
           context={{}}
           onGenerate={async () => ({
             subject: 'Action Required',
             body: 'AI-generated recommendation based on current data patterns and predicted trends.',
             urgency: 'HIGH',
-            actions: ['Review top eudr compliance findings', 'Optimize mill allocation', 'Prepare quarterly oil precision ag report'],
+            actions: ['Accelerate replanting in Block-12 Riau (yield below 18T/ha)', 'Deploy drone fertilizer application in peat areas', 'Adjust harvest rotation for East Kalimantan estates'],
           })}
         />
       </div>
@@ -116,9 +116,9 @@ export default function HomePage() {
       <AskAI
         title="Ask AI"
         sampleQuestions={[
-          'Which mills have the highest eudr compliance?',
-          'Show yield trend for the last 30 days',
-          'What is the forecast for next quarter's yield?',
+          'Which estates have yield below target?',
+          'Show optimal fertilizer schedule by soil type',
+          'What is the replanting ROI for 15+ year palms?',
         ]}
         mode="both"
         onSubmit={async (question, mode) => {
@@ -178,8 +178,8 @@ export default function HomePage() {
 
   const tabs = [
     { id: 'executive-cockpit', label: 'Executive Cockpit', icon: '📊', content: executiveCockpit },
-    { id: 'domain-1', label: 'Oil Precision Ag Analytics', icon: '📈', content: domainTab1 },
-    { id: 'domain-2', label: 'Alerts & Actions', icon: '⚡', content: domainTab2 },
+    { id: 'domain-1', label: 'Agronomics', icon: '📈', content: domainTab1 },
+    { id: 'domain-2', label: 'Planning', icon: '⚡', content: domainTab2 },
     { id: 'ask-ai', label: 'Ask AI', icon: '🤖', content: askAiTab },
     { id: 'architecture', label: 'Architecture & Data', icon: '🏗️', content: architectureTab },
   ];
