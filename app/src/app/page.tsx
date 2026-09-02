@@ -32,15 +32,22 @@ export default function HomePage() {
       .catch(() => {});
   }, []);
 
+
+  // KPI values come from /api/data, which reads CURATED.KPI_SUMMARY. The literal
+  // stays as a fallback so the card still renders if the API is unavailable.
+  const kpiVal = (title: string, fallback: string): string =>
+    (data?.kpiCards as { title: string; value: string }[] | undefined)
+      ?.find((k) => k.title === title)?.value ?? fallback;
+
   const title = narrative?.title || 'SEA AWS Demo';
 
   const executiveCockpit = (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <KPICard title="FFB Yield (Avg)" value="24.2 T/ha" status="neutral" />
-        <KPICard title="Fertilizer Efficiency" value="84%" status="neutral" />
-        <KPICard title="Replanting Target" value="12K ha" status="warning" />
-        <KPICard title="Estates Monitored" value="847" status="neutral" />
+        <KPICard title="FFB Yield (Avg)" value={kpiVal('FFB Yield (Avg)', '24.2 T/ha')} status="neutral" />
+        <KPICard title="Fertilizer Efficiency" value={kpiVal('Fertilizer Efficiency', '84%')} status="neutral" />
+        <KPICard title="Replanting Target" value={kpiVal('Replanting Target', '12K ha')} status="warning" />
+        <KPICard title="Estates Monitored" value={kpiVal('Estates Monitored', '847')} status="neutral" />
       </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="lg:col-span-1">
@@ -87,9 +94,9 @@ export default function HomePage() {
   const domainTab1 = (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <KPICard title="OER Rate" value="22.4%" />
-        <KPICard title="Harvest Interval" value="12 days" />
-        <KPICard title="Palm Age (Avg)" value="14 yrs" />
+        <KPICard title="OER Rate" value={kpiVal('OER Rate', '22.4%')} />
+        <KPICard title="Harvest Interval" value={kpiVal('Harvest Interval', '12 days')} />
+        <KPICard title="Palm Age (Avg)" value={kpiVal('Palm Age (Avg)', '14 yrs')} />
       </div>
       <Chart
         data={data?.detail || [{ x: 'Mon', y: 24 }, { x: 'Tue', y: 28 }, { x: 'Wed', y: 22 }, { x: 'Thu', y: 31 }, { x: 'Fri', y: 26 }, { x: 'Sat', y: 19 }, { x: 'Sun', y: 23 }]}
